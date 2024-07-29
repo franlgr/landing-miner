@@ -1,0 +1,111 @@
+/*--------------------------------------------*/
+/*  14.4 Homepage Two Slider
+/*--------------------------------------------*/
+.slider-area-home-two .banner-content.slider-2 h1.title1 {
+    animation: 1500ms ease-in-out 0s normal none 1 running fadeInLeftBig;
+    color: #ffffff;
+    font-family: "Roboto Condensed",sans-serif;
+    font-size: 65px;
+    font-weight: 700;
+    left: 50%;
+    line-height: 80px;
+    margin: 0 0 20px;
+    position: absolute;
+    text-decoration: underline;
+    text-transform: uppercase;
+    top: 10%;
+}
+.slider-area-home-two .slider-2 .slider-readmore a:hover, .slider-readmore-2 a:hover {
+    background: #FF7B52 none repeat scroll 0 0;
+}
+.slider-area-home-two .slider-3 .title1 {
+    color: #ff7b52;
+    font-family: "Roboto Condensed",sans-serif;
+    font-size: 90px;
+    font-weight: 700;
+    line-height: 90px;
+    text-transform: uppercase;
+    animation: 900ms ease-in-out 0s normal none 1 running fadeInDown;
+}
+.slider-area-home-two .slider-3 .text-content {
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    text-align: left;
+    width: 97%
+}
+.slider-area-home-two .slider-3 .sub-title {
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    display: inline-block;
+    font-family: "Roboto Condensed",sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 50px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    animation: 1100ms ease-in-out 0s normal none 1 running fadeInLeft;
+}
+/*--------------------------------------------*/
+/*  14.5 Homepage Two Service
+/*--------------------------------------------*/
+.service-area-home-two .single-service {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border-radius: 0;
+    margin:0;
+    padding: 15px 0;
+    position: relative;
+}
+.service-area-home-two .single-service:hover {
+    box-shadow: none
+}
+.service-border {
+    border-bottom: 3px double #d8d8d8;
+    border-top: 3px double #d8d8d8;
+    margin: 30px 0;
+}
+.service-area-home-two .service-single-item .service-icon span {
+    border-radius: 100%;
+    display: block;
+    font-family: FontAwesome;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    width: 100%;
+    background: transparent
+}
+.service-area-home-two .service-single-item .service-icon {
+    border: 0 none;
+    color: #f69358;
+    float: left;
+    font-size: 0;
+    height: 50px;
+    margin: 0;
+    width: 50px;
+    padding: 0;
+}
+.service-area-home-two .single-service:hover .service-single-item .service-icon {
+    animation: 500ms ease-in-out 0s normal none 1 running swing !important;
+}
+.service-area-home-two .service-single-item .service-text {
+    margin-left: 60px;
+}
+.service-area-home-two .service-single-item .service-text h2 {
+    color: #505056;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: 0;
+    text-transform: uppercase;
+}
+.service-area-home-two .service-single-item .service-text h2 .color {
+    color: #505056;
+}
+.service-area-home-two .service-border-line p {
+    color: #5a5a5a;
+    font-size: 12px;
+}
+.service-area-home-two .service-border-line::before, .service-area-home-two .service-border-line p::before {
+    display: none
+}
+.service-area-home-two .single-service:hover .service-border-line p {
+    color: #b7b7b7

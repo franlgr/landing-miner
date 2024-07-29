@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+* {
+  box-sizing: border-box;
+}
+
+/* body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+} */
+
+.chat-container {
+  background-color: rgba(0, 0, 0, 0.82);
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7);
+  overflow: hidden;
+  position: fixed;
+  bottom: 70px;
+  right: 20px; /* Cambiado de left a right */
+  width: 320px;
+  max-width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #0084ff;
+  color: white;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.message {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0px 15px 5px 0px rgba(0,0,0,0.5);
+  margin-bottom: 10px;
+  padding: 10px;
+  max-width: 80%;
+}
+
+.message.left {
+  align-self: flex-start;
+}
+
+.message.right {
+  align-self: flex-end;
+  background-color: #0084ff;
+  color: white;
+}
+
+.logochat {
+  border-radius: 50%;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.7);
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.message.right .logochat {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.message p {
+  margin: 0;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.text_input {
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.chat-button {
+  position: fixed;
+  bottom: 50px;
+  right: 20px; /* Cambiado de left a right */
+  width: 60px;
+  height: 60px;
+  background-color: #0084ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7);
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  display: none;
+}
