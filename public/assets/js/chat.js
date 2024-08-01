@@ -98,6 +98,7 @@ function sendMessage() {
 
 setTimeout(() => {
   document.getElementById('chatContainer').classList.remove('hidden');
+  playNotificationSound();
 }, 5000);
 // Mostrar y ocultar el chat
 document.getElementById('chatButton').addEventListener('click', () => {
