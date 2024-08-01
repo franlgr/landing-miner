@@ -96,6 +96,9 @@ function sendMessage() {
   document.getElementById('messageInput').value = '';
 }
 
+setTimeout(() => {
+  document.getElementById('chatContainer').classList.remove('hidden');
+}, 5000);
 // Mostrar y ocultar el chat
 document.getElementById('chatButton').addEventListener('click', () => {
   document.getElementById('chatContainer').classList.toggle('hidden');
