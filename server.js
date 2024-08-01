@@ -86,7 +86,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const port = process.env.PORT || 8879;
+const port = process.env.PORT || 3388;
 
 server.listen(port, () => {
   console.log(`Servidor escuchando en el puerto http://localhost:${port}`);
