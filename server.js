@@ -70,6 +70,14 @@ io.on('connection', (socket) => {
   }, 2000);
 });
 
+app.use('/assets', express.static(path.join(__dirname, 'assets'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.mp3')) {
+      res.setHeader('Content-Type', 'audio/mpeg');
+    }
+  }
+}));
+
 // Configurar la carpeta de archivos estáticos para servir los archivos de la aplicación
 app.use(express.static(path.join(__dirname, 'public')));
 

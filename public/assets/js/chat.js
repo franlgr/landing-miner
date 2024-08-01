@@ -1,6 +1,16 @@
 const socket = io();
 let messagesData = [];
 let currentChatId = localStorage.getItem('chatId');
+let lastMessageTimestamps = {}; // Objeto para almacenar el timestamp del último mensaje por chat
+
+const notificationSound = new Audio('/assets/stop-13692.mp3');
+
+// Función para reproducir el sonido de notificación
+function playNotificationSound() {
+  notificationSound.play().catch(error => {
+    console.error('Error al reproducir el sonido de notificación:', error);
+  });
+}
 
 // Solicitar chatId al cargar la página
 socket.emit('checkChatId', currentChatId);
@@ -11,6 +21,7 @@ socket.on('loadChat', ({ chatId, messages }) => {
   currentChatId = chatId; // Actualizar currentChatId aquí también
   messagesData = messages;
   loadChat(messages);
+  updateLastMessageTimestamps(messages);
 });
 
 // Manejar creación de nuevo chat
@@ -19,6 +30,7 @@ socket.on('newChat', (message) => {
   currentChatId = message.chatId; // Actualizar currentChatId aquí también
   messagesData = [message];
   loadChat(messagesData);
+  updateLastMessageTimestamps(messagesData);
 });
 
 // Manejar nuevos mensajes enviados por el usuario
@@ -26,13 +38,25 @@ socket.on('newMessage', (message) => {
   if (message.chatId === currentChatId) {
     messagesData.push(message);
     loadChat(messagesData);
+    updateLastMessageTimestamps(messagesData);
   }
 });
 
 // Manejar actualizaciones periódicas de mensajes
 socket.on('updateMessages', (messages) => {
-  messagesData = messages.filter(msg => msg.chatId === currentChatId);
+  const newMessages = messages.filter(msg => msg.chatId === currentChatId);
+  
+  if (newMessages.length > 0) {
+    const latestMessage = newMessages[newMessages.length - 1];
+    
+    if (!lastMessageTimestamps[currentChatId] || latestMessage.timestamp !== lastMessageTimestamps[currentChatId]) {
+      playNotificationSound();
+    }
+  }
+  
+  messagesData = newMessages;
   loadChat(messagesData);
+  updateLastMessageTimestamps(messagesData);
 });
 
 function loadChat(messages) {
@@ -43,14 +67,19 @@ function loadChat(messages) {
     const message = document.createElement('li');
     message.classList.add('message', msg.sender === 'user' ? 'right' : 'left');
     message.innerHTML = `
-      <img class="logochat" src="https://randomuser.me/api/portraits/${msg.sender === 'user' ? 'men/67.jpg' : 'women/17.jpg'}" alt="">
       <p>${msg.text}</p>
-      <div class="timestamp">${new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+      <div class="timestamp">${new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</div>
     `;
     chatDiv.appendChild(message);
   });
 
   chatDiv.scrollTop = chatDiv.scrollHeight;
+}
+
+function updateLastMessageTimestamps(messages) {
+  messages.forEach(msg => {
+    lastMessageTimestamps[msg.chatId] = msg.timestamp;
+  });
 }
 
 document.getElementById('messageInput').addEventListener('keypress', (e) => {
@@ -62,6 +91,7 @@ document.getElementById('messageInput').addEventListener('keypress', (e) => {
 function sendMessage() {
   const chatId = localStorage.getItem('chatId');
   const text = document.getElementById('messageInput').value;
+  if (!text) return;
   socket.emit('userMessage', { chatId, text });
   document.getElementById('messageInput').value = '';
 }
