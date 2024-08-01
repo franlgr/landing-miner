@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 // Conectar a MongoDB
-mongoose.connect('mongodb+srv://admin-web:stuart@cluster0.podle1o.mongodb.net/landing-test', {
+mongoose.connect('mongodb+srv://admin-web:stuart@cluster0.podle1o.mongodb.net/noi', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
