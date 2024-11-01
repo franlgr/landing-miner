@@ -96,10 +96,29 @@ function sendMessage() {
   document.getElementById('messageInput').value = '';
 }
 
+function sendWelcomeMessage() {
+  const chatId = localStorage.getItem('chatId');
+  const welcomeMessage = "¡Hola! Me gustaría saber más detalles sobre el siguiente producto:";
+  socket.emit('userMessage', { chatId, text: welcomeMessage });
+}
+
 setTimeout(() => {
   document.getElementById('chatContainer').classList.remove('hidden');
   playNotificationSound();
+
+  // Verificar si ya se envió el mensaje de bienvenida
+  const welcomeMessageSent = localStorage.getItem('welcomeMessage');
+  
+  if (!welcomeMessageSent) {
+    sendWelcomeMessage();
+    localStorage.setItem('welcomeMessage', 'true'); // Marcar como enviado
+  }
 }, 5000);
+
+// setTimeout(() => {
+//   document.getElementById('chatContainer').classList.remove('hidden');
+//   playNotificationSound();
+// }, 5000);
 // Mostrar y ocultar el chat
 document.getElementById('chatButton').addEventListener('click', () => {
   document.getElementById('chatContainer').classList.toggle('hidden');
